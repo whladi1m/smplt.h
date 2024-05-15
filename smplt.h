@@ -5,6 +5,17 @@
 #include <algorithm>
 #include <random>
 
+#include <Windows.h> // for messages or another stuff
+#include <chrono> // for time stuff
+
+/*
+ENUMS:
+    MB_ICONINFORMATION
+    MB_ICONWARNING
+    MB_ICONERROR
+    MB_ICONQUESTION
+*/
+
 namespace smplt {
 
     // Bubble Sort
@@ -154,6 +165,131 @@ namespace smplt {
                 a = c;
         }
         return c;
+    }
+
+    // Function to check if number is the palidrome
+    
+    /*
+    PS:
+    See https://en.wikipedia.org/wiki/Palindromic_number
+    */
+
+    bool isPalidrome(int number) {
+        int reversed = 0, remainder, original;
+
+        original = number;
+
+        while (number != 0) {
+            remainder = number % 10;
+            reversed = reversed * 10 + remainder;
+            number /= 10;
+        }
+
+        if (original == reversed) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    bool isPrime(int number) {
+        if (number < 0) {
+            throw std::runtime_error("Cannot complete isPrime() because number is not positive.");
+        }
+
+        int i;
+        bool isPRM = true;
+
+        for (i = 2; i <= number / 2; ++i) {
+            if (number % i == 0) {
+                isPRM = false;
+                break;
+            }
+        }
+
+        return isPRM;
+    }
+
+    // Matrix multiplication
+    /*
+    PS:
+    See https://en.wikipedia.org/wiki/Matrix_multiplication
+    */
+
+    // Function to perform matrix multiplication
+    std::vector<std::vector<int>> matrixMultiplication(const std::vector<std::vector<int>>& A, const std::vector<std::vector<int>>& B) {
+        int m = A.size();
+        int n = A[0].size();
+        int p = B[0].size();
+
+        std::vector<std::vector<int>> result(m, std::vector<int>(p, 0));
+
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j < p; ++j) {
+                for (int k = 0; k < n; ++k) {
+                    result[i][j] += A[i][k] * B[k][j];
+                }
+            }
+        }
+
+        return result;
+    }
+
+    // Function to calculate the time difference in milliseconds
+    long long timeDifference(const std::chrono::steady_clock::time_point& start, const std::chrono::steady_clock::time_point& end) {
+        return std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
+    }
+
+    // Function to calculate the time difference in seconds
+    long long calculateTimeDifferenceInSeconds(const std::chrono::steady_clock::time_point& start, const std::chrono::steady_clock::time_point& end) {
+        return std::chrono::duration_cast<std::chrono::seconds>(end - start).count(); // just replace std::chrono::seconds with your
+    }
+
+    // VECTOR/ARRAY STUFF
+    // int size = sizeof(arr) / sizeof(arr[0]);
+    // Function to find the maximum number in an array
+    int findMaxInArray(int arr[], int size) {
+        if (size == 0) {
+            throw std::runtime_error("Array is empty.");
+        }
+        
+        int maxNum = arr[0];
+        
+        for (int i = 1; i < size; ++i) {
+            if (arr[i] > maxNum) {
+                maxNum = arr[i];
+            }
+        }
+        
+        return maxNum;
+    }
+
+    // Function to find the maximum number in a vector
+    int findMaxInVector(const std::vector<int>& vec) {
+        if (vec.empty()) {
+            throw std::runtime_error("Vector is empty.");
+        }
+        
+        auto maxElement = std::max_element(vec.begin(), vec.end());
+        
+        return *maxElement;
+    }
+
+    // GRAPHICS/WINDOWS STUFF
+    void showMessage(const char* title, const char* message) {
+        MessageBoxA(NULL, message, title, MB_OK | MB_ICONINFORMATION);
+    }
+
+    void showWarningMessage(const char* title, const char* message) {
+        MessageBoxA(NULL, message, title, MB_OK | MB_ICONWARNING);
+    }
+
+    void showErrorMessage(const char* title, const char* message) {
+        MessageBoxA(NULL, message, title, MB_OK | MB_ICONERROR);
+    }
+
+    void showQuestionMessage(const char* title, const char* message) {
+        MessageBoxA(NULL, message, title, MB_OK | MB_ICONQUESTION);
     }
 
 } // namespace smplt
