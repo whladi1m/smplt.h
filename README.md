@@ -20,7 +20,7 @@ int main() {
     return 0;
 }
 ```
-1. **Selection Sort**: Sorts a vector of elements in ascending order using the Selection Sort algorithm.
+2. **Selection Sort**: Sorts a vector of elements in ascending order using the Selection Sort algorithm.
 ```cpp
 #include "smplt.h"
 #include <iostream>
@@ -33,6 +33,27 @@ int main() {
     }
     std::cout << std::endl;
     return 0;
+}
+```
+### Math:
+3. **Factorial**: Finds fib. numbers.
+```cpp
+#include "smplt.h"
+#include <iostream>
+
+int main() {
+    int n = 5;
+    std::cout << "Factorial of " << n << " is: " << smplt::factorial(n) << std::endl;
+}
+```
+4. **Find root of number**: Finds root of number.
+```cpp
+#include "smplt.h"
+#include <iostream>
+
+int main() {
+    double root = smplt::findRoot([](double x) { return x * x - 4; }, 0, 3);
+    std::cout << "Root of the function f(x) = x^2 - 4 is: " << root << std::endl;
 }
 ```
 
