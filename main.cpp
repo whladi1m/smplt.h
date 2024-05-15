@@ -1,4 +1,5 @@
 #include <iostream>
+#include <chrono>
 #include "smplt.h"
 
 int main() {
@@ -57,6 +58,55 @@ int main() {
         std::cout << num << " ";
     }
     std::cout << std::endl;
+
+    // Example of palindrome
+    int num1 = 12321;
+    bool isPalidrome = smplt::isPalidrome(num1);
+    std::cout << isPalidrome;
+
+    // Example of prime number
+    int num2 = 17;
+    bool isPrime = smplt::isPrime(num2);
+    std::cout << isPrime;
+
+    // Example of matrix multiplication
+    std::vector<std::vector<int>> A = {{1, 2, 3}, {4, 5, 6}};
+    std::vector<std::vector<int>> B = {{7, 8}, {9, 10}, {11, 12}};
+    std::vector<std::vector<int>> result = smplt::matrixMultiplication(A, B);
+
+    // Displaying the result
+    for (const auto& row : result) {
+        for (int element : row) {
+            std::cout << element << " ";
+        }
+        std::cout << std::endl;
+    }
+
+    // Example of time difference in milliseconds
+    auto start = std::chrono::steady_clock::now();
+    // Some operation or task
+    auto end = std::chrono::steady_clock::now();
+    long long duration = smplt::timeDifference(start, end);
+    std::cout << "Time taken: " << duration << " milliseconds" << std::endl;
+
+    // Example of find max in array
+    int arr[] = {10, 20, 30, 40, 50};
+    int sizeOfArray = sizeof(arr) / sizeof(arr[0]);
+    int maxInArray = smplt::findMaxInArray(arr, sizeOfArray);
+    std::cout << "Max number in array: " << maxInArray << std::endl;
+
+    // Example of find max in vector
+    std::vector<int> vec = {10, 20, 30, 40, 50};
+    int maxInVector = smplt::findMaxInVector(vec);
+    std::cout << "Max number in vector: " << maxInVector << std::endl;
+
+    // Example of showing a message
+    const char* title = "Information";
+    const char* message = "Hello, this is a message box!";
+    smplt::showMessage(title, message);
+    smplt::showWarningMessage(title, message);
+    smplt::showErrorMessage(title, message);
+    smplt::showQuestionMessage(title, message);
 
     return 0;
 }
